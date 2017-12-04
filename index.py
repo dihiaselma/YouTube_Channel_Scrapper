@@ -1,6 +1,4 @@
 #This code works with Python 3 not 2
-import socialreaper
-from socialreaper import Youtube
 import json
 import csv
 
@@ -33,20 +31,3 @@ def getPartsVideo(c):
         return (authorDisplayName,authorProfileImageUrl,authorChannelUrl,authorChannelId,videoId,textDisplay
             ,textOriginal,canRate,viewerRating,likeCount,publishedAt,updatedAt
             ,OV_publishedAt,OV_channelId,OV_title,OV_description,OV_channelTitle)  
-
-with open('Brandt_YouTube_Comments.csv', 'w') as file:
-        w = csv.writer(file)
-        w.writerow(["authorDisplayName","authorProfileImageUrl","authorChannelUrl","authorChannelId","videoId",
-                    "textDisplay","textOriginal","canRate","viewerRating","likeCount","publishedAt","updatedAt"
-                    ,"OV_publishedAt","OV_channelId","OV_title","OV_description","OV_channelTitle"])  
-        ytb = Youtube("")
-        channel_id = ""
-
-        comments = ytb.channel_video_comments(channel_id, video_count=5, 
-                  comment_count=20,comment_format="plainText",part='snippet',mine='true')
-        for c in comments:             
-            if (getPartsVideo(c)!=None) : w.write(getPartsVideo(c))
-               
-
-print("Done!")
-
